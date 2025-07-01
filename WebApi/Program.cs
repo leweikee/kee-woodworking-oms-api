@@ -64,8 +64,11 @@ namespace WebApi
             .UseSerilog() //Uses Serilog instead of default .NET Logger
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-                    webBuilder.UseUrls($"http://*:{port}");
+                    var port = Environment.GetEnvironmentVariable("PORT");
+                    if (!string.IsNullOrEmpty(port))
+                    {
+                        webBuilder.UseUrls($"http://*:{port}");
+                    }
                     webBuilder.UseStartup<Startup>();
                 })
                 .ConfigureServices(services =>
