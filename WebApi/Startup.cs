@@ -26,7 +26,7 @@ namespace WebApi
             services.AddIdentityInfrastructure(_config);
             services.AddPersistenceInfrastructure(_config);
             services.AddSharedInfrastructure(_config);
-            services.AddSwaggerExtension();
+            //services.AddSwaggerExtension();
             services.AddControllers();
             services.AddApiVersioningExtension();
             services.AddHealthChecks();
@@ -49,7 +49,7 @@ namespace WebApi
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseSwaggerExtension();
+            //app.UseSwaggerExtension();
             app.UseErrorHandlingMiddleware();
             app.UseHealthChecks("/health");
 
