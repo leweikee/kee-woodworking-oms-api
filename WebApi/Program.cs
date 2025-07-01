@@ -24,6 +24,7 @@ namespace WebApi
             //Read Configuration from appSettings
             var config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables()
                 .Build();
 
             //Initialize Logger
@@ -63,6 +64,8 @@ namespace WebApi
             .UseSerilog() //Uses Serilog instead of default .NET Logger
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+                    webBuilder.UseUrls($"http://*:{port}");
                     webBuilder.UseStartup<Startup>();
                 })
                 .ConfigureServices(services =>
