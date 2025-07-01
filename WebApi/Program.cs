@@ -67,7 +67,7 @@ namespace WebApi
                     var port = Environment.GetEnvironmentVariable("PORT");
                     if (!string.IsNullOrEmpty(port))
                     {
-                        webBuilder.UseUrls($"http://*:{port}");
+                        webBuilder.UseUrls($"http://0.0.0.0:{port}");
                     }
                     webBuilder.UseStartup<Startup>();
                 })
